@@ -1,0 +1,160 @@
+<!-- Add the app header section -->
+<app-header></app-header>
+
+<!-- Feature page content -->
+<div class="container bg-white">
+  <!-- ============================================================== -->
+  <!-- project tab one -->
+  <!-- ============================================================== -->
+  <div class="influence-profile-content pills-regular">
+    <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-campaign-tab" data-toggle="pill" href="#pills-campaign" role="tab"
+          aria-controls="pills-campaign" aria-selected="true">Project</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-packages-tab" data-toggle="pill" href="#pills-packages" role="tab" aria-controls="pills-packages"
+          aria-selected="false">Student</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review"
+          aria-selected="false">Company</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-msg-tab" data-toggle="pill" href="#pills-msg" role="tab" aria-controls="pills-msg"
+          aria-selected="false">Mentor</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active pb-3" id="pills-campaign" role="tabpanel" aria-labelledby="pills-campaign-tab">
+        <div class="card">
+          <div class="card-header d-flex">
+            <h4 class="card-header-title">Project:Vehicle Tracking Using Driver Mobile Gps Tracking</h4>
+            <div class="toolbar ml-auto">
+              <a href="#" class="btn btn-primary btn-sm ">View Project</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">This is a Vehicle Tracking Using Driver Mobile Gps Tracking.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- student tab pane -->
+
+      <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-packages-tab">
+        <!-- search bar  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-body">
+              <form>
+                <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-primary search-btn" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end search bar  -->
+        <div *ngFor="let student of studentList" class="card">
+
+          <div class="row">
+            <div class="col-2 pt-3">
+              <div class="user-avatar float-xl-center pr-0 float-none">
+                <img src="assets/images/avatar-1.jpg" alt="User Avatar" class="rounded-circle user-avatar-xl ml-5">
+              </div>
+            </div>
+
+            <div class="col-10">
+              <div class="card-header d-flex">
+                <h4 class="card-header-title"><b>Student :</b> {{student.studentFname}} {{student.studentLname}}</h4>
+                <div class="toolbar ml-auto">
+                  <a href="#" class="btn btn-primary btn-sm ">View Student</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{student.studentDescription}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- company tab-pane -->
+
+      <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+        <!-- search bar  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-body">
+              <form>
+                <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-primary search-btn" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end search bar  -->
+        <div *ngFor="let company of companyList" class="card">
+          <div class="card-header d-flex">
+            <h4 class="card-header-title"><b>Company : </b>{{company.companyName}}</h4>
+            <div class="toolbar ml-auto">
+              <a href="#" class="btn btn-primary btn-sm ">View Company</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{company.companyDescription }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- mentor tab pane -->
+      <div class="tab-pane fade" id="pills-msg" role="tabpanel" aria-labelledby="pills-msg-tab">
+        <!-- search bar  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-body">
+              <form>
+                <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-primary search-btn" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end search bar  -->
+        <!-- ============================================================== -->
+        <div *ngFor="let mentor of mentorList" class="card">
+          <div class="row">
+            <div class="col-2 pt-3">
+              <div class="user-avatar float-xl-center pr-0 float-none">
+                <img src="assets/images/avatar-1.jpg" alt="User Avatar" class="rounded-circle user-avatar-xl ml-5">
+              </div>
+            </div>
+          </div>
+          <div class="col-10">
+            <div class="card-header d-flex">
+              <h4 class="card-header-title"><b>Mentor : </b>{{mentor.mentorFname}} {{mentor.mentorLname}}</h4>
+              <div class="toolbar ml-auto">
+                <a href="#" class="btn btn-primary btn-sm ">View Mentor</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ mentor.mentorDescription}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Add the app footer section -->
+<app-footer></app-footer>

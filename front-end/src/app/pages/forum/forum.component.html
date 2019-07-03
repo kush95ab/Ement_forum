@@ -1,0 +1,178 @@
+<!-- Add the app header section -->
+<app-header></app-header>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<div class="container-fluid ">
+  <!-- The Grid -->
+  <div class="row">
+    <!-- Left Column -->
+    <div class=" col-md-3 col-lg-3">
+      <!-- Profile -->
+      <app-pro-desc></app-pro-desc>
+      <br>
+
+      <!-- Accordion -->
+
+      <br>
+
+      <!-- Alert Box
+      <div class="  display-container  round  theme-l4  border  theme-border  margin-bottom  hide-small">
+        <span onclick="this.parentElement.style.display='none'" class=" button  theme-l3  display-topright">
+          <i class="fa fa-remove"></i>
+        </span>
+        <p><strong>Hey! {{author}}author</strong></p>
+        <p>Welcome back to the Ement Forum</p>
+      </div> -->
+
+      <!-- End Left Column -->
+    </div>
+
+    <!-- Middle Column -->
+    <div class=" col-md-7 col-lg-7">
+
+      <!-- Search bar -->
+
+      <div class=" section">
+        <div class=" row-padding ">
+          <div class="search">
+            <div class="input-group">
+              <input type="text" class="form-control" [(ngModel)]="searchtest" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-search " type="button" aria-pressed="true" (click)="searchPost() "><i
+                    class="fa fa-search fa-fw"></i>
+                  Search</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div><br></div>
+      <!-- End Search bar   -->
+
+      <div class=" section">
+        <div class="card round white">
+          <div class="container padding">
+            <div class="container  padding" style="align-self:left;" class="sender-msg-list"
+              style="width:100%; height:100%;padding:10px">
+              <input style="border-right:50px;padding:10px;width:600px" type="text" [(ngModel)]="postheading"
+                placeholder="Post heading">
+              <input style="border-right:50px;padding:10px;width:600px" type="text" [(ngModel)]="postbody"
+                placeholder="Enter postbody">
+              <input style="border-right:50px;padding:10px;width:600px" type="text" [(ngModel)]="postcategory"
+                placeholder="add category">
+              <button type="button" class=" button ripple theme" (click)="addpost()"><i class="fa fa-pencil"></i> POST
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card white round px-3 my-1">
+          <h3>Sort by</h3>
+      <button type="button" class="button ripple theme" (click)="sortbydate()">most recent</button>
+      <button type="button" class="button ripple theme" (click)="sortbyvotes()">most Popular</button>
+      <button type="button" class="button ripple theme" (click)="sortbyreplies()">most replied</button>
+      </div>
+      <div class="section">
+        <div *ngFor="let post of posts"> 
+          <div class="card white round px-3 my-1">
+
+            <!-- Default dropleft button -->
+            <div class="btn-group float-right ">
+              <button type="button" class="glyphicon" (click)="dropdown(post)" aria-expanded="false">&#xe236;</button>
+              <div class="dropdown-menu dropright">
+                <!-- Dropdown menu links -->
+                <li>link 1</li>
+                <li>link 2</li>
+                <li>link 3</li>
+              </div>
+            </div>
+
+            <div class="row">
+              <span class="px-3"><img src="../../../assets/img/default.png" alt="Avatar"
+                  class="left circle margin-right" style="width:60px">
+              </span>
+              <span>
+                <!-- <h4>{{post.postId}}</h4> -->
+                <h4>USER ROLE :  {{post.user_type}}</h4>
+                <h4>POST Author : {{post.postAuthor}}</h4>
+                <h4>Catogory : {{post.postCategory}}</h4>
+              </span>
+            </div>
+            <div class="postbox">
+              <h5 id="post-title">{{post.postTitle}}</h5>
+              <!-- <hr class=" clear"> -->
+              <p id="post-body">{{post.postBody}}</p>
+            </div>
+
+            <div style="width: 100%">
+              <button type="button" class="button theme-d1 " (click)="upvotePost(post)"><i class="fa fa-thumbs-up"></i>
+                {{post.postUpvote}}</button>
+              <button type="button" class="button theme-d1 " (click)="downvotePost(post)"><i
+                  class="fa fa-thumbs-down"></i>
+                {{post.postDownvote}}</button>
+              <button type="button" class="button theme-d2 margin-bottom" (click)=" getreplies(post)"><i
+                  class="fa fa-comment"></i>
+                Comments</button>
+              <!-- <button type="button" class="button theme-d2 margin-bottom" (click)="deleteposts(post)" *ngIf="type"><i
+                class="fa fa-comment"></i> Delete comment</button> -->
+            </div>
+            <div *ngIf="hidden">
+              <div *ngIf="post.postId==showReplyId">
+                <div>
+                  <ul *ngFor="let reply of postReplies">
+                    <li>
+                      <h6 id="reply-author">{{reply.replyAuthor}}</h6>
+                      <p id="reply-body">{{reply.replyBody}}</p>
+                    </li>
+                    <div style="width: 100%">
+                      <button type="button" class="button theme-d1 " (click)="upvotePostReply(post)"><i
+                          class="fa fa-thumbs-up"></i>
+                        {{reply.replyUpvote}}</button>
+                      <button type="button" class="button theme-d1 " (click)="downvotePostReply(post)"><i
+                          class="fa fa-thumbs-down"></i>
+                        {{reply.Downvote}}</button>
+                      <!-- <button type="button" class="button theme-d2 margin-bottom" (click)=" getreplies(post)"><i
+                          class="fa fa-comment"></i>
+                        Comment</button> -->
+                      <!-- <button type="button" class="button theme-d2 margin-bottom" (click)="deleteposts(post)" *ngIf="type"><i
+                        class="fa fa-comment"></i> Delete comment</button> -->
+                    </div>
+
+                  </ul>
+                </div>
+
+                <div class="container padding">
+                  <input type="text" [(ngModel)]="postreply" placeholder="Enter comment">
+                  <button type="button" class="button theme" (click)="addreply(post)"><i class="fa fa-pencil"></i>
+                    REPLY</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Middle Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-md-2 col-lg-2">
+      <app-notification></app-notification>
+      <div class="card round white padding-32 center">
+        <p><i class="fa fa-bug xxlarge"></i></p>
+      </div>
+
+      <!-- End Right Column  -->
+    </div>
+
+    <!-- End Grid -->
+  </div>
+
+  <!-- End Page Container -->
+</div>
+
+<!-- Add the app footer section -->
+
+<!-- <app-footer></app-footer> -->
